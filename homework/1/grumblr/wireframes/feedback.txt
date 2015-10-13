@@ -1,0 +1,10 @@
+
+Feedback from Pan Li:
+1. Add a background image in the user profile, like what facebook does in the user home page.
+2. The login and signup page could be more interesting.
+3. I like the color :) 
+
+Feedback from Ning Wang:
+1. The global post page looks empty. 
+2. You may add a "Forget password?" function on the login page.
+3. Comment and "like" function on the home page?

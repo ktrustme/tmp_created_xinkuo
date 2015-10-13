@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>grumblr</title>
+    <link href="/static/css/grumblr/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/grumblr/global_post.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="topbar">
+    <div id="title_text">
+        <a>Grumblr</a>
+    </div>
+    <div class="log_btn">
+        <a href="/signup">Sign Up</a>
+    </div>
+</div>
+
+<div class="content">
+    <div class="image_bg">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 " style="position:relative;height:600px;">
+                <div class="login_div">
+                    <div>
+                        <h1>Grumblr</h1>
+                        <p>Welcome Back...</p>
+                        {% if form.errors %}
+                        <p class="error_msg">
+                            Incorrect user name and password.
+                        </p>
+                        {% endif %}
+
+                        <form method="post" action="{% url 'django.contrib.auth.views.login' %}">
+                            <input type="text" placeholder="Email Addresss" id="id_username" maxlength="254" name="username">
+                            <input type="text" placeholder="Password" id="id_password" name="password">
+                            <input type="submit" class="log_btn" value="Let's Grumble">
+                            <input type="hidden" name="next" value="{{ next }}"/>
+                            {% csrf_token %}
+                        </form>
+                        <a href="{% url 'password_reset' %}">I forgot my password</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>
+</html>

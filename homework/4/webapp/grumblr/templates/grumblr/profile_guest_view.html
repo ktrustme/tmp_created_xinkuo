@@ -1,0 +1,69 @@
+{% extends "grumblr/base.html" %}
+    {% block content %}
+    <row>
+        <div class="profile_pane" style="background: url({{ profile.get_background }}) no-repeat; background-size: 100% 100%">
+            <div class="col-md-3">
+                <div class="user_info">
+                    <img src={{ profile.get_photo }} class="user_info_photo">
+                    <p class="user_info_name">{{ profile.get_name }}</p>
+                    <div class="user_info_table">
+                        <p class="label">Email:</p>
+                        <P>&nbsp;&nbsp;&nbsp;&nbsp;{{ profile.get_email}}</P>
+                        <p class="label">Age:</p>
+                        <P >&nbsp;&nbsp;&nbsp;&nbsp;{{ profile.get_age}}</P>
+                        <p class="label">Grumble Since:</p>
+                        <P>&nbsp;&nbsp;&nbsp;&nbsp;{{ profile.get_date_joined}}</P>
+                        <p class="label">Introduction: </p>
+                        <P>&nbsp;&nbsp;&nbsp;&nbsp;"{{ profile.get_introduction}}"</P>
+                        <div class="clear_float"></div>
+                    </div>
+                    <button class="follow_btn_large" value="{{ profile.get_email }}">Follow</button>
+                    <button class="unfollow_btn_large" value="{{ profile.get_email }}">Unfollow</button>
+                    <button class="follow_or_not" value="{{ profile.follow_or_not }}"></button>
+                </div>
+            </div>
+            <div class="col-md-9 signature_pane">
+                <div class="signature">
+                    <span class="signature_quotes1">:"</span>
+                    <span>{{ profile.get_saying }}</span>
+                    <span class="signature_quotes2">"</span>
+                </div>
+            </div>
+        </div>
+    </row>
+
+    <row>
+        <div class="col-md-6 middle-cols">
+            <div class="history_post">
+                <h3>History Grumbles...</h3>
+                {% for grumble in grumbles reversed %}
+                <div class="grumble">
+                    <div>
+                        <p class="user_name">{{ grumble.get_name }}</p>
+                        <a href="/profile">
+                        <img src = {{ grumble.user.userprofile.get_photo }} class="photo">
+                        </a>
+                        <div class="clear_float"></div>
+                    </div>
+                    <div class="grumble_content">
+                        <div class="grumble_text">
+                            <span class="quotes">:"</span>
+                            <span class="text">{{ grumble.get_text }}</span>
+                            <span class="quotes2">"</span>
+                        </div>
+                        <div class="grumble_time">
+                            {{ grumble.get_time }}
+                        </div>
+                        <div class="clear_float"></div>
+                    </div>
+                    <div class="clear_float"></div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        <div class="col-md-3">
+        </div>
+
+    </row>
+        <script src="/static/js/profile_guest.js"></script>
+{%  endblock %}

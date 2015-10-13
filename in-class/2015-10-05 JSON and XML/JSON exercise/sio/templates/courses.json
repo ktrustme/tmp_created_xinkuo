@@ -1,0 +1,13 @@
+
+{% for course in courses %}
+    {
+        "course" : { "course number" : "{{course.course_number}}", 
+                "course name" : "{{course.course_name}}",
+                "instructor" : "{{course.instructor}}",
+                "students" : 
+                    {% for student in studends %}
+                        " student "
+                    {% endfor %}
+                }
+    }
+{% endfor %}

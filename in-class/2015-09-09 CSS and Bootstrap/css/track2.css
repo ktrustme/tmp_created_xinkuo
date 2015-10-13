@@ -1,0 +1,42 @@
+#arbitrary_word {
+    color:#FF0000;
+}
+
+ul li{
+    font-size:20px;
+}
+
+li:first-child { 
+    color:#FF0000;
+    font-size:24px;
+}
+
+li:nth-child(2) { 
+    color:#8BC34A;
+    font-size:24px;
+}
+
+.myform{
+    width:40%;
+}
+
+.myrow{
+    padding:5px;
+}
+
+textarea{
+    resize:none;
+}
+
+.form_label {
+    float: left;
+}
+
+.form_textarea{
+    float: right;
+}
+
+.clear_float{
+    clear:both;        
+}
+

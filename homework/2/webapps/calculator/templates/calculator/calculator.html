@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Calculator Homework</title>
+    {% load staticfiles %}
+    <link rel="stylesheet" type="text/css" href="{% static 'calculator/css/calculator.css' %}" />
+</head>
+<body>
+    <h1>Calculator Homework<br>
+        <small>
+            Name: Xin Kuo AndrewID: xkuo
+        </small>
+    </h1>
+    <div id="calculator">
+        <div id="display" align="right">
+                {{ displayed_num }} 
+        </div>
+        <div class="buttons">
+            <div class="row">
+                <div class="button_grid">
+                <button name="num_button" value="1" type='submit' form='form1' class="number_btn">1</button>
+                </div>
+                <div class="button_grid">
+                <button name="num_button" value="2" type='submit' form='form1' class="number_btn">2</button>
+                </div>
+                <div class="button_grid">
+                <button name="num_button" value="3" type='submit' form='form1' class="number_btn">3</button>
+                </div>
+                <div class="button_grid">
+                <button name="op_button" value="+" type='submit' form='form1' class="op_btn">+</button>
+                </div>
+                <div class="clearfloat"></div>
+            </div>
+            <div class="row">
+                <div class="button_grid">
+                <button name="num_button" value="4" type='submit' form='form1' class="number_btn">4</button>
+                </div>
+                <div class="button_grid">
+                <button name="num_button" value="5" type='submit' form='form1' class="number_btn">5</button>
+                </div>
+                <div class="button_grid">
+                <button name="num_button" value="6" type='submit' form='form1' class="number_btn">6</button>
+                </div>
+                <div class="button_grid">
+                <button name="op_button" value="-" type='submit' form='form1' class="op_btn">-</button>
+                </div>
+                <div class="clearfloat"></div>
+            </div>
+            <div class="row">
+                <div class="button_grid">
+                <button name="num_button" value="7" type='submit' form='form1' class="number_btn">7</button>
+                </div>
+                <div class="button_grid">
+                <button name="num_button" value="8" type='submit' form='form1' class="number_btn">8</button>
+                </div>
+                <div class="button_grid">
+                <button name="num_button" value="9" type='submit' form='form1' class="number_btn">9</button>
+                </div>
+                <div class="button_grid">
+                <button  name="op_button" value="*" type='submit' form='form1' class="op_btn">*</button>
+                </div>
+                <div class="clearfloat"></div>
+            </div>
+            <div class="row">
+                <div class="button_grid">
+                <button name="op_button" value="C" type='submit' form='form1' class="op_btn">C</button>
+                </div>
+                <div class="button_grid">
+                <button name="num_button" value="0" type='submit' form='form1' class="number_btn" value="0">0</button>
+                </div>
+                <div class="button_grid">
+                <button name="op_button" value="=" type='submit' form='form1' class="op_btn">=</button>
+                </div>
+                <div class="button_grid">
+                <button name="op_button" value="/" type='submit' form='form1' class="op_btn">/</button>
+                </div>
+
+                <div class="clearfloat"></div>
+            </div>
+        </div>
+    </div>
+
+    <form action="calculate" method="get" id="form1">
+        <input type="hidden" name="displayed_num" value="{{ displayed_num }}"><br>
+        <input type="hidden" name="last_pressed" value="{{ last_pressed }}"><br>
+        <input type="hidden" name="last_op" value="{{ last_op }}"><br>
+        <input type="hidden" name="last_num" value="{{ last_num}}"><br>
+        {% csrf_token %}
+    </form>
+</body>
+</html>
+

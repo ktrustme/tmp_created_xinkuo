@@ -1,0 +1,92 @@
+{% extends "grumblr/base.html" %}
+    {% block content %}
+        <row>
+            <div class="col-sm-3 col-md-2 sidebar sidebar-left">
+                <ul class="nav nav-sidebar">
+                    <li class="active"><a href="/home">Everybody<span class="sr-only">(current)</span></a></li>
+                    <li><a href="/following_post_page">My Friends</a></li>
+                    <li><a href="/profile">My Profile</a></li>
+                    <li><a href="#">Export</a></li>
+                </ul>
+            </div>
+
+            <div class="col-sm-3 col-md-2 sidebar sidebar-right">
+                <p>Friends...</p>
+                <ul class="nav nav-sidebar">
+                    {% for friend in profile.friendlist %}
+                        <li>
+                            <div class="friend_brief_intro">
+                                <p>{{ friend.get_name }}</p>
+                                <a href="/profile/{{ friend.get_email }}">
+                                    <img src = {{ friend.get_photo }} class="photo">
+                                </a>
+                                <p>&nbsp;&nbsp;&nbsp;&nbsp;"{{ friend.get_saying }}"</p>
+                                <div class="clear_float"></div>
+                            </div>
+                        </li>
+
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="col-md-3"></div>
+
+        <div class="col-md-6 middle-cols">
+
+            <div class="newpost">
+                <div>
+                    <a href="/profile">
+                        <img src = {{ profile.get_photo }} class="photo">
+                    </a>
+                </div>
+                <div class="editor">
+                    <form enctype="multipart/form-data" class="postform" method="post" action="/home">
+                        <textarea placeholder="Grumble somthing..." name="grumble_text"></textarea>
+                        <button class="image_btn"></button>
+                        <input type="submit" class="submit_btn">
+                        {% csrf_token %}
+                    </form>
+                </div>
+                <div class="clear_float"></div>
+                {% for error in errors %}
+                    <p class="error_msg">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+
+            <div class="global_post">
+                {% for grumble in grumbles reversed %}
+                <div class="grumble">
+
+                    <div>
+                        <p class="user_name">{{ grumble.get_name }}</p>
+                        <a href="/profile/{{ grumble.get_username }}">
+                        <img src = {{ grumble.user.userprofile.get_photo }} class="photo">
+                        </a>
+                        <div class="clear_float"></div>
+                    </div>
+
+                    <div class="grumble_content">
+                        <div class="grumble_text">
+                            <span class="quotes">:"</span>
+                            <span class="text">{{ grumble.get_text }}</span>
+                            <span class="quotes2">"</span>
+                        </div>
+                        <div class="grumble_time">
+                            {{ grumble.get_time }}
+                        </div>
+                        <div class="clear_float"></div>
+                    </div>
+                    <div class="clear_float"></div>
+                    <button class="follow_btn" value="{{ grumble.get_username}}">Follow</button>
+                    <button class="unfollow_btn" value="{{ grumble.get_username }}">Unfollow</button>
+                    <button class="follow_or_not" value="{{grumble.follow_or_not}}"></button>
+                </div>
+
+                {% endfor %}
+            </div>
+        </div>
+        </row>
+        <script src="/static/js/global_post.js"></script>
+    {%  endblock %}

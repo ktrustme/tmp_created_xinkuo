@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>grumblr</title>
+    <link href="/static/css/grumblr/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/grumblr/global_post.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+
+    <div class="topbar">
+        <div id="title_text">
+            <a href="/home">Grumblr</a>
+        </div>
+        <div class="log_btn">
+            <a href="/login">Log Out</a>
+        </div>
+        <a href="/profile" style="font-size:18px;float:right;font-weight:normal;text-decoration:underline;margin-right:10px;">
+            {{ profile.get_name }}
+        </a>
+
+    </div>
+
+    <div class="content">
+        <row>
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6 middle-cols">
+
+            <div class="newpost">
+                <div>
+                    <a href="/profile">
+                        <img src = {{ profile.get_photo }} class="photo">
+                    </a>
+                </div>
+                <div class="editor">
+                    <form class="postform" method="post" action="/home">
+                        <textarea placeholder="Grumble somthing..." name="grumble_text"></textarea>
+                        <button class="image_btn"></button>
+                        <input type="submit" class="submit_btn">
+                        {% csrf_token %}
+                    </form>
+                </div>
+                <div class="clear_float"></div>
+                {% for error in errors %}
+                    <p class="error_msg">
+                        {{ error }}
+                    </p>
+                {% endfor %}
+            </div>
+
+
+
+            <div class="global_post">
+                {% for grumble in grumbles reversed %}
+                <div class="grumble">
+
+                    <div>
+                        <p class="user_name">{{ grumble.get_name }}</p>
+                        <a href="/profile/{{ grumble.get_username }}">
+                        <img src = {{ grumble.user.userprofile.get_photo }} class="photo">
+                        </a>
+                        <div class="clear_float"></div>
+                    </div>
+
+                    <div class="grumble_content">
+                        <div class="grumble_text">
+                            <span class="quotes">:"</span>
+                            <span class="text">{{ grumble.get_text }}</span>
+                            <span class="quotes2">"</span>
+                        </div>
+                        <div class="grumble_time">
+                            {{ grumble.get_time }}
+                        </div>
+                        <div class="clear_float"></div>
+                    </div>
+                    <div class="clear_float"></div>
+                </div>
+                {% endfor %}
+            </div>
+
+
+        </div>
+        <div class="col-md-3">
+
+        </div>
+        </row>
+    </div>
+
+
+</body>
+</html>

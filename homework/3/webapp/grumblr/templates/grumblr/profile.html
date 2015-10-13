@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>grumblr</title>
+    <link href="/static/css/grumblr/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/grumblr/global_post.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div class="topbar">
+    <div id="title_text">
+        <a href="/home">Grumblr</a>
+    </div>
+    <div class="log_btn">
+        <a href="/login">Log Out</a>
+    </div>
+    <a href="/profile" style="font-size:18px;float:right;font-weight:normal;text-decoration:underline;margin-right:10px;">
+        {{ user.userprofile.get_name }}
+    </a>
+</div>
+
+<div class="content">
+    <row>
+        <div class="profile_pane" style="background: url({{ profile.get_background }}) no-repeat; background-size: 100% 100%">
+            <div class="col-md-3">
+                <div class="user_info">
+                    <img src={{ profile.get_photo }} class="user_info_photo">
+                    <p class="user_info_name">{{ profile.get_name }}</p>
+                    <div class="user_info_table">
+                        <p>Email: {{ profile.get_email }}</p>
+                        <p>Gender: {{ profile.get_gender }}</p>
+                        <p>Grumble Since: {{ profile.get_age }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9 signature_pane">
+                <div class="signature">
+                    <span class="signature_quotes1">:"</span>
+                    <span>{{ profile.get_saying }}</span>
+                    <span class="signature_quotes2">"</span>
+                </div>
+            </div>
+        </div>
+    </row>
+
+    <row>
+        <div class="col-md-6 middle-cols">
+            <div class="history_post">
+                <h3>History Grumbles...</h3>
+                {% for grumble in grumbles reversed %}
+                <div class="grumble">
+                    <div>
+                        <p class="user_name">{{ grumble.get_name }}</p>
+                        <a href="/profile">
+                        <img src = {{ grumble.user.userprofile.get_photo }} class="photo">
+                        </a>
+                        <div class="clear_float"></div>
+                    </div>
+                    <div class="grumble_content">
+                        <div class="grumble_text">
+                            <span class="quotes">:"</span>
+                            <span class="text">{{ grumble.get_text }}</span>
+                            <span class="quotes2">"</span>
+                        </div>
+                        <div class="grumble_time">
+                            {{ grumble.get_time }}
+                        </div>
+                        <div class="clear_float"></div>
+                    </div>
+                    <div class="clear_float"></div>
+                </div>
+                {% endfor %}
+                <!--
+                <div class="grumble">
+                    <div>
+                        <p class="user_name">Xin</p>
+                        <img src = "/static/img/grumblr/photo2.jpg" class="photo">
+                        <div class="clear_float"></div>
+                    </div>
+
+                    <div class="grumble_content">
+                        <div class="grumble_text">
+                            <span class="quotes">:"</span>
+                            <span class="text">It was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness, it was the epoch of belief, it was the epoch of incredulity,  ...</span>
+                            <span class="quotes2">"</span>
+                        </div>
+
+                        <div class="grumble_time">
+                            12:33 09/08/2015
+                        </div>
+                        <div class="clear_float"></div>
+                    </div>
+                    <div class="clear_float"></div>
+                </div>
+
+
+                <div class="grumble">
+                    <div>
+                        <p class="user_name">Xin</p>
+                        <img src = "/static/img/grumblr/photo2.jpg" class="photo">
+                        <div class="clear_float"></div>
+                    </div>
+
+                    <div class="grumble_content">
+                        <div class="grumble_text">
+                            <span class="quotes">:"</span>
+                            <span class="text">How cute it is !!!</span>
+                            <span class="quotes2">"</span>
+                        </div>
+                        <img src = "/static/img/grumblr/cat.jpg" class="grumble_image">
+                        <div class="grumble_time">
+                            12:30 09/08/2015
+                        </div>
+                        <div class="clear_float"></div>
+                    </div>
+                    <div class="clear_float"></div>
+                </div>
+            </div>
+            -->
+        </div>
+        <div class="col-md-3">
+        </div>
+    </row>
+</div>
+
+
+</body>
+</html>
